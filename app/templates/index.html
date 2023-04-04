@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<div id="eeg-controls">
+    <button id="zoom-in">Zoom In</button>
+    <button id="zoom-out">Zoom Out</button>
+    <button id="pan-left">Pan Left</button>
+    <button id="pan-right">Pan Right</button>
+</div>
+<div id="eeg-display"></div>
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+{% endblock %}
