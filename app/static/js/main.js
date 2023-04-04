@@ -38,6 +38,20 @@ const addNoiseToData = async (data, noiseType, params) => {
     return result.noisy_data;
 };
 
+document.getElementById('upload-eeg').addEventListener('change', async (event) => {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const response = await fetch('/upload_eeg', {
+        method: 'POST',
+        body: formData,
+    });
+
+    const result = await response.json();
+    displayEEGData(result.data, result.sampling_rate);
+});
+
 document.getElementById('zoom-in').addEventListener('click', () => {
     Plotly.relayout('eeg-display', { 'xaxis.range': (range) => [range[0] * 1.25, range[1] * 0.75] });
 });
